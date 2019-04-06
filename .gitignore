@@ -78,3 +78,8 @@ typings/
 *.njsproj
 *.sln
 *.sw*
+
+# Tizen directories and files
+/tizen/*
+!/tizen/config.xml
+!/tizen/icon.png

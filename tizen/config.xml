@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="https://github.com/michaelpwest/new-york-city-subway-tizen-app" version="1.0.0" viewmodes="maximized">
+	<tizen:application id="LgYLDHpFmW.NewYorkCitySubway" package="LgYLDHpFmW" required_version="2.3"/>
+	<content src="index.html"/>
+	<feature name="http://tizen.org/feature/screen.size.all"/>
+	<icon src="icon.png"/>
+	<name>New York City Subway</name>
+	<description>New York City Subway app for Tizen wearable devices.</description>
+	<author href="https://github.com/michaelpwest" email="michaelpwest@users.noreply.github.com">Michael West</author>
+	<tizen:profile name="wearable"/>
+</widget>
