@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<h1>Home</h1>
+		<header class="ui-header">
+			<h2 class="ui-title">Home</h2>
+		</header>
 		<section class="ui-content"></section>
 	</div>
 </template>

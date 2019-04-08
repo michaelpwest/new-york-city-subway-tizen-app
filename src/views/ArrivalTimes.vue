@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<h1>Arrival Times</h1>
+		<header class="ui-header">
+			<h2 class="ui-title">Arrival Times</h2>
+		</header>
 		<section class="ui-content"></section>
 	</div>
 </template>
