@@ -1,0 +1,92 @@
+[
+	{
+		"name": "IRT Broadway–Seventh Avenue Line",
+		"line": "123",
+		"routes": [
+			"1",
+			"2",
+			"3"
+		]
+	},
+	{
+		"name": "IRT Lexington Avenue Line",
+		"line": "456",
+		"routes": [
+			"4",
+			"5",
+			"6"
+		]
+	},
+	{
+		"name": "IRT Flushing Line",
+		"line": "7",
+		"routes": [
+			"7"
+		]
+	},
+	{
+		"name": "IND Eighth Avenue Line",
+		"line": "ACE",
+		"routes": [
+			"A",
+			"C",
+			"E"
+		]
+	},
+	{
+		"name": "IND Sixth Avenue Line",
+		"line": "BDFM",
+		"routes": [
+			"B",
+			"D",
+			"F",
+			"M"
+		]
+	},
+	{
+		"name": "IND Crosstown Line",
+		"line": "G",
+		"routes": [
+			"G"
+		]
+	},
+	{
+		"name": "BMT Nassau Street Line",
+		"line": "JZ",
+		"routes": [
+			"J",
+			"Z"
+		]
+	},
+	{
+		"name": "BMT Canarsie Line",
+		"line": "L",
+		"routes": [
+			"L"
+		]
+	},
+	{
+		"name": "BMT Broadway Line",
+		"line": "NQR",
+		"routes": [
+			"N",
+			"Q",
+			"R",
+			"W"
+		]
+	},
+	{
+		"name": "Shuttles",
+		"line": "S",
+		"routes": [
+			"S"
+		]
+	},
+	{
+		"name": "Staten Island Railway",
+		"line": "SIR",
+		"routes": [
+			"SIR"
+		]
+	}
+]

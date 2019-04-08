@@ -1,0 +1,205 @@
+[
+	{
+		"route": "1",
+		"first": "Van Cortlandt Park - 242 St",
+		"last": "South Ferry",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "2",
+		"first": "Wakefield - 241 St",
+		"last": "Flatbush Av - Brooklyn College",
+		"uptown": "Bronx",
+		"downtown": "Manhattan / Brooklyn"
+	},
+	{
+		"route": "3",
+		"first": "Harlem - 148 St",
+		"last": "New Lots Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "4",
+		"first": "Woodlawn",
+		"last": "Crown Hts - Utica Av",
+		"uptown": "Bronx",
+		"downtown": "Manhattan / Brooklyn"
+	},
+	{
+		"route": "5",
+		"first": "Eastchester - Dyre Av",
+		"last": "Flatbush Av - Brooklyn College",
+		"uptown": "Bronx",
+		"downtown": "Manhattan / Brooklyn"
+	},
+	{
+		"route": "5X",
+		"first": "Eastchester - Dyre Av",
+		"last": "Flatbush Av - Brooklyn College",
+		"uptown": "Bronx",
+		"downtown": "Manhattan / Brooklyn"
+	},
+	{
+		"route": "6",
+		"first": "Pelham Bay Park",
+		"last": "Brooklyn Bridge - City Hall",
+		"uptown": "Bronx",
+		"downtown": "Manhattan"
+	},
+	{
+		"route": "6X",
+		"first": "Pelham Bay Park",
+		"last": "Brooklyn Bridge - City Hall",
+		"uptown": "Bronx",
+		"downtown": "Manhattan"
+	},
+	{
+		"route": "7",
+		"first": "Flushing - Main St",
+		"last": "34 St - 11 Av",
+		"uptown": "Queens",
+		"downtown": "Manhattan"
+	},
+	{
+		"route": "7X",
+		"first": "Flushing - Main St",
+		"last": "34 St - 11 Av",
+		"uptown": "Queens",
+		"downtown": "Manhattan"
+	},
+	{
+		"route": "A",
+		"first": "Inwood - 207 St",
+		"last": "Rockaway Park - Beach 116 St",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "C",
+		"first": "168 St",
+		"last": "Euclid Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "E",
+		"first": "Jamaica Center - Parsons/Archer",
+		"last": "World Trade Center",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "B",
+		"first": "145 St",
+		"last": "Brighton Beach",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "D",
+		"first": "Norwood - 205 St",
+		"last": "Coney Island - Stillwell Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "F",
+		"first": "Jamaica - 179 St",
+		"last": "Coney Island - Stillwell Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "M",
+		"first": "Forest Hills - 71 Av",
+		"last": "Middle Village - Metropolitan Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "G",
+		"first": "Court Sq",
+		"last": "Church Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "J",
+		"first": "Jamaica Center - Parsons/Archer",
+		"last": "Broad St",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "Z",
+		"first": "Jamaica Center - Parsons/Archer",
+		"last": "Broad St",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "L",
+		"first": "8 Av",
+		"last": "Canarsie - Rockaway Pkwy",
+		"uptown": "Manhattan",
+		"downtown": "Brooklyn"
+	},
+	{
+		"route": "N",
+		"first": "Astoria - Ditmars Blvd",
+		"last": "Coney Island - Stillwell Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "Q",
+		"first": "96 St",
+		"last": "Coney Island - Stillwell Av",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "R",
+		"first": "Forest Hills - 71 Av",
+		"last": "Bay Ridge - 95 St",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "W",
+		"first": "Astoria - Ditmars Blvd",
+		"last": "Whitehall St",
+		"uptown": "Uptown",
+		"downtown": "Downtown"
+	},
+	{
+		"route": "GS",
+		"first": "Times Sq - 42 St",
+		"last": "Grand Central - 42 St",
+		"uptown": "Times Sq - 42 St",
+		"downtown": "Grand Central - 42 St"
+	},
+	{
+		"route": "FS",
+		"first": "Franklin Av",
+		"last": "Prospect Park",
+		"uptown": "Franklin Av",
+		"downtown": "Prospect Park"
+	},
+	{
+		"route": "H",
+		"first": "Broad Channel",
+		"last": "Rockaway Park - Beach 116 St",
+		"uptown": "Broad Channel",
+		"downtown": "Rockaway Park - Beach 116 St"
+	},
+	{
+		"route": "SIR",
+		"first": "St George",
+		"last": "Tottenville",
+		"uptown": "St George",
+		"downtown": "Tottenville"
+	}
+]
