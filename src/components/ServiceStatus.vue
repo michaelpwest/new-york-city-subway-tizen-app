@@ -1,16 +1,23 @@
 <template>
 	<section>
-		<ul v-for="(lineStatus, i) in status" :key="i" class="ui-listview">
+		<ul v-for="(lineStatus, i) in status" :key="i" @click="setDetail(lineStatus.detail)" class="ui-listview">
 			<li class="ui-listview-divider">
 				<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" class="bullet"></div>
 			</li>
 			<li :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</li>
 		</ul>
+		<div v-show="detail" class="detail ui-popup">
+			<div v-html="detail" class="ui-popup-content"></div>
+			<div class="ui-bottom-button ui-popup-footer">
+				<a href="#" class="ui-btn" @click="unsetDetail()">OK</a>
+			</div>
+		</div>
 	</section>
 </template>
 
 <script>
 const axios = require("axios");
+const sanitizeHtml = require("sanitize-html");
 
 const config = require("@/assets/config/config.json");
 
@@ -18,6 +25,7 @@ export default {
 	data() {
 		return {
 			status: [],
+			detail: null,
 		};
 	},
 	async mounted() {
@@ -34,6 +42,7 @@ export default {
 			response.data.forEach((line) => {
 				const name = line.name;
 				const status = line.status;
+				let detail = line.text;
 
 				// Get individual routes for line.
 				const routes = name == "SIR" ? ["SIR"] : name.split("");
@@ -51,10 +60,47 @@ export default {
 					color = "#996600";
 					break;
 				}
+
+				if (detail) {
+					// Sanitize detail HTML.
+					detail = sanitizeHtml(detail, {
+						allowedTags: [
+							"b",
+							"br",
+							"div",
+							"i",
+							"span",
+							"table",
+							"tbody",
+							"td",
+							"tfoot",
+							"th",
+							"thead",
+							"tr",
+						],
+						allowedAttributes: {
+							"*": [
+								"class",
+							],
+							"table": [
+								"border",
+								"cellpadding",
+								"cellspacing",
+								"frame",
+								"rules",
+							],
+						},
+					});
+
+					// Replace [A], [B], etc. in detail with route bullets.
+					detail = detail.replace(/\[(.{1})\]/g, "<div style='background-image: url(./images/$1.png)' class='bullet'></div>");
+				}
+
 				this.status.push({
 					status,
 					routes,
 					color,
+					detail,
 				});
 			});
 		} catch(error) {
@@ -69,16 +115,36 @@ export default {
 			return false;
 		}
 	},
+	methods: {
+		setDetail(detail) {
+			this.detail = detail;
+		},
+		unsetDetail() {
+			this.detail = null;
+		},
+	},
 };
 </script>
 
 <style scoped>
-.bullet {
+.bullet, .detail >>> .bullet {
 	background-size: 32px;
 	display: inline-block;
 	height: 32px;
 	margin-left: 5px;
 	margin-right: 5px;
 	width: 32px;
+}
+.detail >>> .TitlePlannedWork, .detail >>> .TitleDelay {
+	color: #0000FF;
+	font-weight: bold;
+}
+.ui-popup {
+	display: block;
+	overflow: scroll;
+}
+.ui-bottom-button.ui-popup-footer {
+	bottom: 20px;
+	position: fixed;
 }
 </style>
