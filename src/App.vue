@@ -25,6 +25,7 @@ export default {
 
 <style>
 #app {
+	overflow: scroll;
 	text-align: center;
 }
 </style>
