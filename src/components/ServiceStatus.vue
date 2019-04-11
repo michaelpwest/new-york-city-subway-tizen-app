@@ -6,6 +6,7 @@
 			</li>
 			<li :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</li>
 		</ul>
+		<div v-show="noResults">{{ noResults }}</div>
 		<div v-show="detail" class="detail ui-popup">
 			<div v-html="detail" class="ui-popup-content"></div>
 			<div class="ui-bottom-button ui-popup-footer">
@@ -25,6 +26,7 @@ export default {
 	data() {
 		return {
 			status: [],
+			noResults: null,
 			detail: null,
 		};
 	},
@@ -39,6 +41,14 @@ export default {
 				throw new Error("Cannot retrieve service status");
 			}
 
+			response.data = response.data.filter(line => {
+				return line.status != "GOOD SERVICE";
+			});
+
+			if (!response.data.length) {
+				this.noResults = "All lines are running with GOOD SERVICE.";
+			}
+
 			response.data.forEach((line) => {
 				const name = line.name;
 				const status = line.status;
@@ -50,9 +60,6 @@ export default {
 				// Set color based on service status.
 				let color;
 				switch(status) {
-				case "GOOD SERVICE":
-					color = "#006600";
-					break;
 				case "DELAYS":
 					color = "#990033";
 					break;
