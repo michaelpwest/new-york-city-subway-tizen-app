@@ -146,12 +146,4 @@ export default {
 	color: #0000FF;
 	font-weight: bold;
 }
-.ui-popup {
-	display: block;
-	overflow: scroll;
-}
-.ui-bottom-button.ui-popup-footer {
-	bottom: 20px;
-	position: fixed;
-}
 </style>

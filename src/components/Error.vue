@@ -21,9 +21,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped>
-.ui-popup {
-	display: block;
-}
-</style>

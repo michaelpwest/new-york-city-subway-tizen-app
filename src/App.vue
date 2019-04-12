@@ -28,4 +28,15 @@ export default {
 	overflow: scroll;
 	text-align: center;
 }
+.ui-bottom-button.ui-popup-footer {
+	bottom: 20px;
+	position: fixed;
+}
+.ui-popup {
+	display: block;
+	overflow: scroll;
+}
+.ui-popup-content {
+	margin-bottom: 100px;
+}
 </style>
