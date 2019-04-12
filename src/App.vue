@@ -16,6 +16,21 @@ export default {
 			return this.$store.state.error != null;
 		},
 	},
+	created() {
+		document.addEventListener("rotarydetent", this.handleRotary);
+	},
+	methods: {
+		handleRotary(e) {
+			// Scroll page based on rotary event direction.
+			const scrollStep = 100;
+			const app = document.querySelector("#app");
+			const popup = document.querySelectorAll(".ui-popup");
+			app.scrollTop += e.detail.direction == "CW" ? scrollStep : -scrollStep;
+			popup.forEach((element) => {
+				element.scrollTop += e.detail.direction == "CW" ? scrollStep : -scrollStep;
+			});
+		},
+	},
 	components: {
 		Error,
 		Navigation,
