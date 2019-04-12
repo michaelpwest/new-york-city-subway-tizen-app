@@ -57,4 +57,11 @@ export default {
 .circle.home {
 	background: #FF6600;
 }
+.ui-header {
+	background: #080808;
+	margin-top: 0;
+	position: fixed;
+	top: -25px;
+	z-index: 999;
+}
 </style>

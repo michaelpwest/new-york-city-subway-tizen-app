@@ -47,6 +47,12 @@ export default {
 	bottom: 20px;
 	position: fixed;
 }
+.ui-content {
+	min-height: 185px;
+}
+.ui-header {
+	margin-top: 60px;
+}
 .ui-popup {
 	display: block;
 	overflow: scroll;
