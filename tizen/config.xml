@@ -8,4 +8,6 @@
 	<description>New York City Subway app for Tizen wearable devices.</description>
 	<author href="https://github.com/michaelpwest" email="michaelpwest@users.noreply.github.com">Michael West</author>
 	<tizen:profile name="wearable"/>
+	<access origin="*" subdomains="true"/>
+	<tizen:privilege name="http://tizen.org/privilege/internet"/>
 </widget>
