@@ -49,13 +49,13 @@ export default {
 	width: 56px;
 }
 .circle.arrival-times {
-	background: #6699FF;
+	background: #0072FF;
 }
 .circle.service-status {
-	background: #669900;
+	background: #3CBB00;
 }
 .circle.home {
-	background: #FF6600;
+	background: #F47610;
 }
 .ui-header {
 	background: #080808;
