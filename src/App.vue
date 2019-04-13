@@ -18,6 +18,7 @@ export default {
 	},
 	created() {
 		document.addEventListener("rotarydetent", this.handleRotary);
+		document.addEventListener("tizenhwkey", this.handleBackButton);
 	},
 	methods: {
 		handleRotary(e) {
@@ -28,6 +29,14 @@ export default {
 			app.scrollTop += e.detail.direction == "CW" ? scrollStep : -scrollStep;
 			popup.forEach((element) => {
 				element.scrollTop += e.detail.direction == "CW" ? scrollStep : -scrollStep;
+			});
+		},
+		handleBackButton() {
+			const popupButtons = document.querySelectorAll(".ui-btn");
+
+			// Close any open popups.
+			popupButtons.forEach((element) => {
+				element.click();
 			});
 		},
 	},
