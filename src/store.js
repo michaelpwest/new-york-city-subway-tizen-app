@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	state: {
 		error: null,
 		route: null,
+		station: null,
 	},
 	mutations: {
 		error(state, error) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
 		},
 		route(state, route) {
 			state.route = route;
+		},
+		station(state, station) {
+			state.station = station;
 		},
 	},
 	actions: {
