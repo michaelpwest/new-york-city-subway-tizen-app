@@ -4,8 +4,9 @@
 			<h2 class="ui-title">Arrival Times</h2>
 		</header>
 		<section class="ui-content">
-			<Routes v-show="!route"></Routes>
-			<Stations v-show="route"></Stations>
+			<Routes v-show="!route && !station"></Routes>
+			<Stations v-show="route && !station"></Stations>
+			<ArrivalTimes v-show="route && station"></ArrivalTimes>
 		</section>
 	</div>
 </template>
@@ -13,16 +14,21 @@
 <script>
 import Routes from "@/components/Routes.vue";
 import Stations from "@/components/Stations.vue";
+import ArrivalTimes from "@/components/ArrivalTimes.vue";
 
 export default {
 	computed: {
 		route: function() {
 			return this.$store.state.route;
 		},
+		station: function() {
+			return this.$store.state.station;
+		},
 	},
 	components: {
 		Routes,
 		Stations,
+		ArrivalTimes,
 	},
 };
 </script>

@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 const stations = require("@/assets/resources/stations.json");
 
 export default {
@@ -66,8 +68,11 @@ export default {
 	},
 	methods: {
 		selectStation(station) {
-			this.$store.commit("station", station);
+			this.station(station);
 		},
+		...mapActions([
+			"station",
+		]),
 	},
 };
 </script>
