@@ -2,6 +2,7 @@
 	<section>
 		<ul class="ui-listview">
 			<li class="ui-listview-divider">{{ station.name }}</li>
+			<li class="ui-listview-divider">Last updated: {{ arrivalTimes.timestamp | time }}</li>
 		</ul>
 		<ul class="ui-listview" v-for="(direction, i) in arrivalTimes.directions" :key="i">
 			<li class="ui-listview-divider">{{ direction.name }}</li>
@@ -63,6 +64,12 @@ export default {
 		},
 	},
 	filters: {
+		time: (timestamp) => {
+			if (!timestamp) {
+				return "";
+			}
+			return moment.unix(timestamp).format("h:mm:ss a");
+		},
 		timeFromNow: (timestamp) => {
 			let timeFromNow = Math.max(Math.ceil((timestamp - moment().unix()) / 60), 0);
 			if (timeFromNow == 1) {
