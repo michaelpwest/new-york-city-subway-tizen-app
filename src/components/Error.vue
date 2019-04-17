@@ -1,10 +1,12 @@
 <template>
-	<div class="ui-popup">
-		<div class="ui-popup-content">{{ error }}</div>
-		<div class="ui-popup-footer ui-bottom-button">
-			<a href="#" class="ui-btn" @click="clearError()">OK</a>
+	<section>
+		<div class="ui-popup">
+			<div v-html="error" class="ui-popup-content"></div>
+			<div class="ui-popup-footer ui-bottom-button">
+				<a href="#" class="ui-btn" @click="clearError()">OK</a>
+			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -21,3 +23,9 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.ui-popup-content {
+	margin-top: 60px;
+}
+</style>
