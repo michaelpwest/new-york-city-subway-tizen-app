@@ -1,9 +1,14 @@
 <template>
 	<section>
-		<ul v-for="(borough, i) in boroughs" :key="i" class="ui-listview">
-			<li class="ui-listview-divider">{{ borough.name }}</li>
-			<li v-for="(station, j) in borough.stations" :key="j" @click="selectStation(station.station)">{{ station.name }}</li>
-		</ul>
+		<header class="ui-header">
+			<h2 class="ui-title">Select Station</h2>
+		</header>
+		<section class="ui-content">
+			<ul v-for="(borough, i) in boroughs" :key="i" class="ui-listview">
+				<li class="ui-listview-divider">{{ borough.name }}</li>
+				<li v-for="(station, j) in borough.stations" :key="j" @click="selectStation(station.station)">{{ station.name }}</li>
+			</ul>
+		</section>
 	</section>
 </template>
 

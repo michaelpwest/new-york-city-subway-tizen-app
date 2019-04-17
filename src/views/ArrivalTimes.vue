@@ -1,14 +1,9 @@
 <template>
-	<div>
-		<header class="ui-header">
-			<h2 class="ui-title">Arrival Times</h2>
-		</header>
-		<section class="ui-content">
-			<Routes v-show="!route && !station"></Routes>
-			<Stations v-show="route && !station"></Stations>
-			<ArrivalTimes v-show="route && station"></ArrivalTimes>
-		</section>
-	</div>
+	<section>
+		<Routes v-show="!route && !station"></Routes>
+		<Stations v-show="route && !station"></Stations>
+		<ArrivalTimes v-show="route && station"></ArrivalTimes>
+	</section>
 </template>
 
 <script>

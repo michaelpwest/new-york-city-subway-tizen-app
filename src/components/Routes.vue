@@ -1,10 +1,15 @@
 <template>
 	<section>
-		<ul v-for="(line, i) in lines" :key="i" class="ui-listview">
-			<li class="ui-listview-divider">
-				<div v-for="(route, j) in line.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" @click="selectRoute(route)" class="bullet"></div>
-			</li>
-		</ul>
+		<header class="ui-header">
+			<h2 class="ui-title">Select Route</h2>
+		</header>
+		<section class="ui-content">
+			<ul v-for="(line, i) in lines" :key="i" class="ui-listview">
+				<li class="ui-listview-divider">
+					<div v-for="(route, j) in line.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" @click="selectRoute(route)" class="bullet"></div>
+				</li>
+			</ul>
+		</section>
 	</section>
 </template>
 

@@ -1,18 +1,23 @@
 <template>
 	<section>
-		<ul v-for="(lineStatus, i) in status" :key="i" @click="setDetail(lineStatus.detail)" class="ui-listview">
-			<li class="ui-listview-divider">
-				<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" class="bullet"></div>
-			</li>
-			<li :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</li>
-		</ul>
-		<div v-show="noResults">{{ noResults }}</div>
-		<div v-show="detail" class="detail ui-popup">
-			<div v-html="detail" class="ui-popup-content"></div>
-			<div class="ui-bottom-button ui-popup-footer">
-				<a href="#" class="ui-btn" @click="unsetDetail()">OK</a>
+		<header class="ui-header">
+			<h2 class="ui-title">Service Status</h2>
+		</header>
+		<section class="ui-content">
+			<ul v-for="(lineStatus, i) in status" :key="i" @click="setDetail(lineStatus.detail)" class="ui-listview">
+				<li class="ui-listview-divider">
+					<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" class="bullet"></div>
+				</li>
+				<li :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</li>
+			</ul>
+			<div v-show="noResults">{{ noResults }}</div>
+			<div v-show="detail" class="detail ui-popup">
+				<div v-html="detail" class="ui-popup-content"></div>
+				<div class="ui-bottom-button ui-popup-footer">
+					<a href="#" class="ui-btn" @click="unsetDetail()">OK</a>
+				</div>
 			</div>
-		</div>
+		</section>
 	</section>
 </template>
 

@@ -1,19 +1,23 @@
 <template>
 	<section>
-		<ul class="ui-listview">
-			<li class="ui-listview-divider">{{ station.name }}</li>
-			<li class="ui-listview-divider">Last updated: {{ arrivalTimes.timestamp | time }}</li>
-		</ul>
-		<ul class="ui-listview" v-for="(direction, i) in arrivalTimes.directions" :key="i">
-			<li class="ui-listview-divider">{{ direction.name }}</li>
-			<li v-for="(arrivalTime, j) in direction.arrivalTimes" :key="j">
-				<div>{{ arrivalTime.firstLast }}</div>
-				<div class="bullet-container">
-					<div :style="{ 'background-image': `url(./images/${arrivalTime.route}.png)` }" class="bullet"></div>
-				</div>
-				<div class="arrival-time">{{ arrivalTime.arrivalTime | timeFromNow }}</div>
-			</li>
-		</ul>
+		<header class="ui-header">
+			<h2 class="ui-title">{{ station.name }}</h2>
+		</header>
+		<section class="ui-content">
+			<ul class="ui-listview">
+				<li class="ui-listview-divider">Last updated: {{ arrivalTimes.timestamp | time }}</li>
+			</ul>
+			<ul class="ui-listview" v-for="(direction, i) in arrivalTimes.directions" :key="i">
+				<li class="ui-listview-divider">{{ direction.name }}</li>
+				<li v-for="(arrivalTime, j) in direction.arrivalTimes" :key="j">
+					<div>{{ arrivalTime.firstLast }}</div>
+					<div class="bullet-container">
+						<div :style="{ 'background-image': `url(./images/${arrivalTime.route}.png)` }" class="bullet"></div>
+					</div>
+					<div class="arrival-time">{{ arrivalTime.arrivalTime | timeFromNow }}</div>
+				</li>
+			</ul>
+		</section>
 	</section>
 </template>
 

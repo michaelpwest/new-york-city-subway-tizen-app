@@ -1,3 +1,8 @@
 <template>
-	<section></section>
+	<section>
+		<header class="ui-header">
+			<h2 class="ui-title">Home</h2>
+		</header>
+		<section class="ui-content"></section>
+	</section>
 </template>
