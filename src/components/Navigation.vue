@@ -2,13 +2,13 @@
 	<div id="nav">
 		<header class="ui-header">
 			<h2 class="ui-title">
-				<div class="circle service-status" @click="routerLink(0)">
+				<div class="circle service-status" @click="routerLink(links[0])">
 					<i class="fas fa-exclamation"></i>
 				</div>
-				<div class="circle home" @click="routerLink(1)">
+				<div class="circle home" @click="routerLink(links[1])">
 					<i class="fas fa-home"></i>
 				</div>
-				<div class="circle arrival-times" @click="routerLink(2)">
+				<div class="circle arrival-times" @click="routerLink(links[2])">
 					<i class="fas fa-search"></i>
 				</div>
 			</h2>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
 	data() {
 		return {
@@ -28,11 +30,9 @@ export default {
 		};
 	},
 	methods: {
-		routerLink(link) {
-			this.$router.push({
-				path: this.links[link],
-			});
-		},
+		...mapActions([
+			"routerLink",
+		]),
 	},
 };
 </script>

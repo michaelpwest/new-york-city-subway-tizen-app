@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import router from "./router";
+
 Vue.use(Vuex);
 
 const axios = require("axios");
@@ -30,6 +32,11 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
+		routerLink(context, payload) {
+			router.push({
+				path: payload,
+			});
+		},
 		async station(context, payload) {
 			try {
 				// Set station.
