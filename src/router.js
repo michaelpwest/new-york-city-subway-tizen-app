@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import NearbyStations from "./views/NearbyStations.vue";
 import ServiceStatus from "./views/ServiceStatus.vue";
 import ArrivalTimes from "./views/ArrivalTimes.vue";
 
@@ -11,8 +11,8 @@ export default new Router({
 	routes: [
 		{
 			path: "/",
-			name: "home",
-			component: Home,
+			name: "nearby-stations",
+			component: NearbyStations,
 		},
 		{
 			path: "/service-status/:line?",

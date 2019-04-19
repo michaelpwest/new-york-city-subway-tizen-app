@@ -10,4 +10,6 @@
 	<tizen:profile name="wearable"/>
 	<access origin="*" subdomains="true"/>
 	<tizen:privilege name="http://tizen.org/privilege/internet"/>
+	<feature name="http://tizen.org/feature/location.gps"/>
+	<tizen:privilege name="http://tizen.org/privilege/location"/>
 </widget>
