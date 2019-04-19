@@ -1,8 +1,8 @@
 <template>
 	<section>
 		<Routes v-show="!route && !station"></Routes>
-		<Stations v-show="route && !station"></Stations>
-		<ArrivalTimes v-show="route && station"></ArrivalTimes>
+		<Stations v-show="route"></Stations>
+		<ArrivalTimes v-show="station"></ArrivalTimes>
 	</section>
 </template>
 
@@ -14,10 +14,10 @@ import ArrivalTimes from "@/components/ArrivalTimes.vue";
 export default {
 	computed: {
 		route: function() {
-			return this.$store.state.route;
+			return this.$store.state.selectedRoute;
 		},
 		station: function() {
-			return this.$store.state.station;
+			return this.$store.state.selectedStation;
 		},
 	},
 	components: {

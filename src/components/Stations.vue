@@ -18,10 +18,13 @@ import { mapActions } from "vuex";
 const stations = require("@/assets/resources/stations.json");
 
 export default {
+	props: [
+		"station",
+	],
 	computed: {
 		boroughs: function() {
 			try {
-				const route = this.$store.state.route;
+				const route = this.$store.state.selectedRoute;
 				if (!route) {
 					return {};
 				}
@@ -71,12 +74,21 @@ export default {
 			}
 		},
 	},
+	async mounted() {
+		if (this.$route.params.station) {
+			this.$store.commit("selectedRoute", null);
+			this.selectedStation(this.$route.params.station);
+		}
+	},
 	methods: {
 		selectStation(station) {
-			this.station(station);
+			this.routerLink(`/arrival-times/station/${station}`);
+			this.$store.commit("selectedRoute", null);
+			this.selectedStation(station);
 		},
 		...mapActions([
-			"station",
+			"routerLink",
+			"selectedStation",
 		]),
 	},
 };

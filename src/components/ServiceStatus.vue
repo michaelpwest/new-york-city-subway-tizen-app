@@ -4,17 +4,17 @@
 			<h2 class="ui-title">Service Status</h2>
 		</header>
 		<section class="ui-content">
-			<ul v-for="(lineStatus, i) in status" :key="i" @click="setDetail(lineStatus.detail)" class="ui-listview">
+			<ul v-for="(lineStatus, i) in status" :key="i" @click="setLineDetail(lineStatus.name)" class="ui-listview">
 				<li class="ui-listview-divider">
-					<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" class="bullet"></div>
+					<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" class="bullet"></div>
 				</li>
 				<li :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</li>
 			</ul>
-			<div v-show="noResults">{{ noResults }}</div>
-			<div v-show="detail" class="detail ui-popup">
+			<div v-if="noResults">{{ noResults }}</div>
+			<div v-if="detail" class="detail ui-popup">
 				<div v-html="detail" class="ui-popup-content"></div>
 				<div class="ui-bottom-button ui-popup-footer">
-					<a href="#" class="ui-btn" @click="unsetDetail()">OK</a>
+					<a href="#" class="ui-btn" @click="unsetLineDetail()">OK</a>
 				</div>
 			</div>
 		</section>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 const axios = require("axios");
 const sanitizeHtml = require("sanitize-html");
 
@@ -35,6 +37,9 @@ export default {
 			detail: null,
 		};
 	},
+	props: [
+		"id",
+	],
 	async mounted() {
 		try {
 			// Get service status.
@@ -57,7 +62,6 @@ export default {
 			response.data.forEach((line) => {
 				const name = line.name;
 				const status = line.status;
-				let detail = line.text;
 
 				// Get individual routes for line.
 				const routes = name == "SIR" ? ["SIR"] : name.split("");
@@ -73,48 +77,18 @@ export default {
 					break;
 				}
 
-				if (detail) {
-					// Sanitize detail HTML.
-					detail = sanitizeHtml(detail, {
-						allowedTags: [
-							"b",
-							"br",
-							"div",
-							"i",
-							"span",
-							"table",
-							"tbody",
-							"td",
-							"tfoot",
-							"th",
-							"thead",
-							"tr",
-						],
-						allowedAttributes: {
-							"*": [
-								"class",
-							],
-							"table": [
-								"border",
-								"cellpadding",
-								"cellspacing",
-								"frame",
-								"rules",
-							],
-						},
-					});
-
-					// Replace [A], [B], etc. in detail with route bullets.
-					detail = detail.replace(/\[(.{1})\]/g, "<div style='background-image: url(./images/$1.png)' class='bullet'></div>");
-				}
-
 				this.status.push({
+					name,
 					status,
 					routes,
 					color,
-					detail,
 				});
 			});
+
+			// Get service status detail for line.
+			if (this.$route.params.line) {
+				this.setLineDetail(this.$route.params.line);
+			}
 		} catch(error) {
 			// Modify error message for invalid HTTP response status codes.
 			if (error.response && error.response.status && error.response.status != 200) {
@@ -128,12 +102,74 @@ export default {
 		}
 	},
 	methods: {
-		setDetail(detail) {
-			this.detail = detail;
+		async setLineDetail(line) {
+			try {
+				this.routerLink(`/service-status/${line}`);
+
+				this.detail = null;
+
+				// Get service status detail for line.
+				const response = await axios.get(`${config.apiUrl}/service-status/${line}`);
+
+				if (response.status != 200 || !response.data || !response.data.text) {
+					throw new Error(`Cannot retrieve service status detail for line ${line}`);
+				}
+
+				let detail = response.data.text;
+
+				// Sanitize detail HTML.
+				detail = sanitizeHtml(detail, {
+					allowedTags: [
+						"b",
+						"br",
+						"div",
+						"i",
+						"span",
+						"table",
+						"tbody",
+						"td",
+						"tfoot",
+						"th",
+						"thead",
+						"tr",
+					],
+					allowedAttributes: {
+						"*": [
+							"class",
+						],
+						"table": [
+							"border",
+							"cellpadding",
+							"cellspacing",
+							"frame",
+							"rules",
+						],
+					},
+				});
+
+				// Replace [A], [B], etc. in detail with route bullets.
+				detail = detail.replace(/\[(.{1})\]/g, "<div style='background-image: url(/images/$1.png)' class='bullet'></div>");
+
+				this.detail = detail;
+			} catch(error) {
+				// Modify error message for invalid HTTP response status codes.
+				if (error.response && error.response.status && error.response.status != 200) {
+					error.message = "Cannot retrieve service status";
+				}
+
+				this.status = [];
+				this.$store.commit("error", error);
+
+				return false;
+			}
 		},
-		unsetDetail() {
+		unsetLineDetail() {
+			this.routerLink("/service-status");
 			this.detail = null;
 		},
+		...mapActions([
+			"routerLink",
+		]),
 	},
 };
 </script>

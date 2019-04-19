@@ -12,7 +12,7 @@
 				<li v-for="(arrivalTime, j) in direction.arrivalTimes" :key="j">
 					<div>{{ arrivalTime.firstLast }}</div>
 					<div class="bullet-container">
-						<div :style="{ 'background-image': `url(./images/${arrivalTime.route}.png)` }" class="bullet"></div>
+						<div :style="{ 'background-image': `url(/images/${arrivalTime.route}.png)` }" class="bullet"></div>
 					</div>
 					<div class="arrival-time">{{ arrivalTime.arrivalTime | timeFromNow }}</div>
 				</li>
@@ -31,7 +31,7 @@ export default {
 		station: function() {
 			try {
 				// Get selected station.
-				const selectedStation = this.$store.state.station;
+				const selectedStation = this.$store.state.selectedStation;
 				if (!selectedStation) {
 					this.$store.commit("arrivalTimes", null);
 					return {};

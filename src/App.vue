@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import Error from "@/components/Error.vue";
 import Navigation from "@/components/Navigation.vue";
 
@@ -32,13 +34,35 @@ export default {
 			});
 		},
 		handleBackButton() {
-			const popupButtons = document.querySelectorAll(".ui-btn");
-
 			// Close any open popups.
-			popupButtons.forEach((element) => {
-				element.click();
-			});
+			const popupButtons = document.querySelectorAll(".ui-btn");
+			if (popupButtons.length) {
+				popupButtons.forEach((element) => {
+					element.click();
+				});
+				return true;
+			}
+
+			// If no popup is open, go to home route of selected navigation link.
+			const path = this.$route.path;
+			if (path) {
+				if (path.substr(0, 15) == "/service-status") {
+					this.routerLink("/service-status");
+				} else if (path.substr(0, 14) == "/arrival-times") {
+					this.routerLink("/arrival-times");
+					this.$store.commit("selectedRoute", null);
+					this.$store.commit("selectedStation", null);
+				} else if (path.substr(0, 1) == "/") {
+					this.routerLink("/");
+				}
+				return true;
+			}
+
+			return false;
 		},
+		...mapActions([
+			"routerLink",
+		]),
 	},
 	components: {
 		Error,

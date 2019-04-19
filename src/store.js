@@ -13,19 +13,19 @@ const stations = require("@/assets/resources/stations.json");
 export default new Vuex.Store({
 	state: {
 		error: null,
-		route: null,
-		station: null,
+		selectedRoute: null,
+		selectedStation: null,
 		arrivalTimes: null,
 	},
 	mutations: {
 		error(state, error) {
 			state.error = error;
 		},
-		route(state, route) {
-			state.route = route;
+		selectedRoute(state, route) {
+			state.selectedRoute = route;
 		},
-		station(state, station) {
-			state.station = station;
+		selectedStation(state, station) {
+			state.selectedStation = station;
 		},
 		arrivalTimes(state, arrivalTimes) {
 			state.arrivalTimes = arrivalTimes;
@@ -37,10 +37,10 @@ export default new Vuex.Store({
 				path: payload,
 			});
 		},
-		async station(context, payload) {
+		async selectedStation(context, payload) {
 			try {
 				// Set station.
-				context.commit("station", payload);
+				context.commit("selectedStation", payload);
 
 				// Get selected station details.
 				let station = stations.filter((station) => {

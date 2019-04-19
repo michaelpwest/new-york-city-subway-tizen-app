@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="ui-popup">
+		<div v-if="error" class="ui-popup">
 			<div v-html="error" class="ui-popup-content"></div>
 			<div class="ui-popup-footer ui-bottom-button">
 				<a href="#" class="ui-btn" @click="clearError()">OK</a>

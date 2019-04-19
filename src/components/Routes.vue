@@ -6,7 +6,7 @@
 		<section class="ui-content">
 			<ul v-for="(line, i) in lines" :key="i" class="ui-listview">
 				<li class="ui-listview-divider">
-					<div v-for="(route, j) in line.routes" :key="j" :style="{ 'background-image': `url(./images/${route}.png)` }" @click="selectRoute(route)" class="bullet"></div>
+					<div v-for="(route, j) in line.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" @click="selectRoute(route)" class="bullet"></div>
 				</li>
 			</ul>
 		</section>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 const lines = require("@/assets/resources/lines.json");
 const routes = require("@/assets/resources/routes.json");
 
@@ -24,10 +26,24 @@ export default {
 			routes,
 		};
 	},
+	props: [
+		"route",
+	],
+	async mounted() {
+		if (this.$route.params.route) {
+			this.$store.commit("selectedStation", null);
+			this.$store.commit("selectedRoute", this.$route.params.route);
+		}
+	},
 	methods: {
 		selectRoute(route) {
-			this.$store.commit("route", route);
+			this.routerLink(`/arrival-times/route/${route}`);
+			this.$store.commit("selectedStation", null);
+			this.$store.commit("selectedRoute", route);
 		},
+		...mapActions([
+			"routerLink",
+		]),
 	},
 };
 </script>
