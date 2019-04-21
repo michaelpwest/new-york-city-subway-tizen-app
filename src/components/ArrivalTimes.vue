@@ -5,7 +5,12 @@
 		</header>
 		<section class="ui-content">
 			<ul class="ui-listview">
-				<li class="ui-listview-divider">Last updated: {{ arrivalTimes.timestamp | time }}</li>
+				<li class="ui-listview-divider">
+					Updated: {{ arrivalTimes.timestamp | time }}
+					<div class="refresh" @click="refresh()">
+						<i class="fas fa-redo-alt"></i>
+					</div>
+				</li>
 			</ul>
 			<ul class="ui-listview" v-for="(direction, i) in arrivalTimes.directions" :key="i">
 				<li class="ui-listview-divider">{{ direction.name }}</li>
@@ -22,6 +27,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 const moment = require("moment");
 
 const stations = require("@/assets/resources/stations.json");
@@ -67,6 +74,16 @@ export default {
 			}
 		},
 	},
+	methods: {
+		refresh: function() {
+			// Clear arrival times and refresh.
+			this.$store.commit("arrivalTimes", null);
+			this.selectedStation(this.station.station);
+		},
+		...mapActions([
+			"selectedStation",
+		]),
+	},
 	filters: {
 		time: (timestamp) => {
 			if (!timestamp) {
@@ -102,5 +119,10 @@ export default {
 	display: inline-block;
 	text-align: left;
 	width: 32px;
+}
+.refresh {
+	color: #12B4FF;
+	display: inline-block;
+	margin-left: 10px;
 }
 </style>
