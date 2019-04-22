@@ -6,7 +6,7 @@
 		<section class="ui-content">
 			<ul class="ui-listview">
 				<li class="ui-listview-divider">
-					Updated: {{ timestamp | time }}
+					<span v-show="timestamp" class="time">Updated: {{ timestamp | time }}</span>
 					<div class="refresh" @click="refresh()">
 						<i class="fas fa-redo-alt"></i>
 					</div>
@@ -223,8 +223,10 @@ export default {
 	font-weight: bold;
 }
 .refresh {
-	color: #12B4FF;
 	display: inline-block;
 	margin-left: 10px;
+}
+.refresh, .time {
+	color: #12B4FF;
 }
 </style>
