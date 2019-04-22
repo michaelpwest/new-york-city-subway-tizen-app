@@ -4,6 +4,7 @@
 			<h2 class="ui-title">Nearby Stations</h2>
 		</header>
 		<section class="ui-content">
+			<div class='error'>{{ error }}</div>
 			<ul v-for="(station, i) in stations" :key="i" class="ui-listview">
 				<li class="ui-listview-divider">
 					<div v-for="(route, j) in station.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" class="bullet"></div>
@@ -24,11 +25,14 @@ const stations = require("@/assets/resources/stations.json");
 export default {
 	data() {
 		return {
+			error: null,
 			stations: [],
 		};
 	},
 	created() {
 		try {
+			this.error = null;
+
 			// Get geolocation.
 			if (navigator.geolocation) {
 				const navigatorOptions = {
@@ -66,7 +70,7 @@ export default {
 			}
 		},
 		locationError() {
-			this.$store.commit("error", "Geolocation is not available.");
+			this.error = "Geolocation is not available.";
 		},
 		selectStation(station) {
 			this.routerLink(`/arrival-times/station/${station}`);
@@ -89,5 +93,8 @@ export default {
 	margin-left: 5px;
 	margin-right: 5px;
 	width: 32px;
+}
+.error {
+	margin-top: 10px;
 }
 </style>
