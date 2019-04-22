@@ -4,6 +4,14 @@
 			<h2 class="ui-title">Nearby Stations</h2>
 		</header>
 		<section class="ui-content">
+			<ul class="ui-listview" >
+				<li class="ui-listview-divider">
+					<span v-show="timestamp" class="time">Updated: {{ timestamp | time }}</span>
+					<div class="refresh" @click="refresh()">
+						<i class="fas fa-redo-alt"></i>
+					</div>
+				</li>
+			</ul>
 			<div class='error'>{{ error }}</div>
 			<ul v-for="(station, i) in stations" :key="i" class="ui-listview">
 				<li class="ui-listview-divider">
@@ -19,6 +27,7 @@
 import { mapActions } from "vuex";
 
 const geolib = require("geolib");
+const moment = require("moment");
 
 const stations = require("@/assets/resources/stations.json");
 
@@ -27,30 +36,35 @@ export default {
 		return {
 			error: null,
 			stations: [],
+			timestamp: null,
 		};
 	},
 	created() {
-		try {
-			this.error = null;
-
-			// Get geolocation.
-			if (navigator.geolocation) {
-				const navigatorOptions = {
-					maximumAge: 60000,
-					timeout: 10000,
-				};
-				navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError, navigatorOptions);
-			} else {
-				this.locationError();
-			}
-		} catch(error) {
-			this.locationError();
-		}
+		this.getLocation();
 	},
 	methods: {
+		getLocation() {
+			try {
+				this.error = null;
+				this.stations = [];
+
+				// Get geolocation.
+				if (navigator.geolocation) {
+					const navigatorOptions = {
+						maximumAge: 60000,
+						timeout: 10000,
+					};
+					navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError, navigatorOptions);
+				} else {
+					this.locationError();
+				}
+			} catch(error) {
+				this.locationError();
+			}
+		},
 		locationSuccess(position) {
 			try {
-				this.stations = [];
+				this.timestamp = moment().unix();
 
 				// Get coordinates.
 				const coords = {
@@ -77,10 +91,22 @@ export default {
 			this.$store.commit("selectedRoute", null);
 			this.selectedStation(station);
 		},
+		refresh() {
+			// Refresh nearby stations.
+			this.getLocation();
+		},
 		...mapActions([
 			"routerLink",
 			"selectedStation",
 		]),
+	},
+	filters: {
+		time: (timestamp) => {
+			if (!timestamp) {
+				return "";
+			}
+			return moment.unix(timestamp).format("h:mm:ss a");
+		},
 	},
 };
 </script>
@@ -96,5 +122,12 @@ export default {
 }
 .error {
 	margin-top: 10px;
+}
+.refresh {
+	display: inline-block;
+	margin-left: 10px;
+}
+.refresh, .time {
+	color: #12B4FF;
 }
 </style>
