@@ -211,11 +211,16 @@ export default {
 
 <style scoped>
 .bullet, .detail >>> .bullet {
-	background-size: 32px;
+	background-size: 48px;
 	display: inline-block;
-	height: 32px;
+	height: 48px;
 	margin-left: 5px;
 	margin-right: 5px;
+	width: 48px;
+}
+.detail >>> .bullet {
+	background-size: 32px;
+	height: 32px;
 	width: 32px;
 }
 .detail >>> .TitlePlannedWork, .detail >>> .TitleDelay {

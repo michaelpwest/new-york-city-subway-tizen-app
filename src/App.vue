@@ -86,6 +86,9 @@ export default {
 .ui-header {
 	margin-top: 60px;
 }
+.ui-listview li.ui-listview-divider {
+	height: 50px;
+}
 .ui-popup {
 	display: block;
 	overflow: scroll;

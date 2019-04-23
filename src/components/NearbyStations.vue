@@ -113,12 +113,12 @@ export default {
 
 <style scoped>
 .bullet {
-	background-size: 32px;
+	background-size: 48px;
 	display: inline-block;
-	height: 32px;
+	height: 48px;
 	margin-left: 5px;
 	margin-right: 5px;
-	width: 32px;
+	width: 48px;
 }
 .error {
 	margin-top: 10px;

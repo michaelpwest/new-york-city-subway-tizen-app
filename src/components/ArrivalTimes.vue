@@ -107,18 +107,19 @@ export default {
 <style scoped>
 .arrival-time {
 	display: inline-block;
-	width: calc(100% - 32px);
+	width: calc(100% - 48px);
 }
 .bullet {
-	background-size: 32px;
+	background-size: 48px;
 	display: inline-block;
-	height: 32px;
-	width: 32px;
+	height: 48px;
+	width: 48px;
 }
 .bullet-container {
 	display: inline-block;
+	line-height: 48px;
 	text-align: left;
-	width: 32px;
+	width: 48px;
 }
 .refresh {
 	display: inline-block;
