@@ -45,6 +45,8 @@ export default {
 	methods: {
 		getLocation() {
 			try {
+				this.$store.commit("loading", true);
+
 				this.error = null;
 				this.stations = [];
 
@@ -79,12 +81,16 @@ export default {
 						this.stations.push(stations[nearestResult.key]);
 					}
 				});
+
+				this.$store.commit("loading", false);
 			} catch(error) {
 				this.locationError();
 			}
 		},
 		locationError() {
 			this.error = "Geolocation is not available.";
+
+			this.$store.commit("loading", false);
 		},
 		selectStation(station) {
 			this.routerLink(`/arrival-times/station/${station}`);

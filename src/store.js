@@ -12,12 +12,16 @@ const stations = require("@/assets/resources/stations.json");
 
 export default new Vuex.Store({
 	state: {
+		loading: false,
 		error: null,
 		selectedRoute: null,
 		selectedStation: null,
 		arrivalTimes: null,
 	},
 	mutations: {
+		loading(state, loading) {
+			state.loading = loading;
+		},
 		error(state, error) {
 			state.error = error;
 		},
@@ -33,12 +37,16 @@ export default new Vuex.Store({
 	},
 	actions: {
 		routerLink(context, payload) {
+			context.commit("loading", false);
+
 			router.push({
 				path: payload,
 			});
 		},
 		async selectedStation(context, payload) {
 			try {
+				context.commit("loading", true);
+
 				// Set station.
 				context.commit("selectedStation", payload);
 
@@ -59,6 +67,8 @@ export default new Vuex.Store({
 				}
 
 				context.commit("arrivalTimes", response.data);
+
+				context.commit("loading", false);
 			} catch(error) {
 				// Modify error message for invalid HTTP response status codes.
 				if (error.response && error.response.status && error.response.status != 200) {
@@ -67,6 +77,8 @@ export default new Vuex.Store({
 
 				context.commit("arrivalTimes", null);
 				context.commit("error", error);
+
+				context.commit("loading", false);
 
 				return false;
 			}

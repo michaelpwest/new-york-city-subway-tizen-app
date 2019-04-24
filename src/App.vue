@@ -1,5 +1,6 @@
 <template>
 	<div id="app">
+		<Loading :active="isLoading" loader="dots"></loading>
 		<Error v-show="isError"></Error>
 		<Navigation></Navigation>
 		<router-view/>
@@ -8,6 +9,8 @@
 
 <script>
 import { mapActions } from "vuex";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 import Error from "@/components/Error.vue";
 import Navigation from "@/components/Navigation.vue";
@@ -16,6 +19,9 @@ export default {
 	computed: {
 		isError() {
 			return this.$store.state.error != null;
+		},
+		isLoading() {
+			return this.$store.state.loading;
 		},
 	},
 	created() {
@@ -65,6 +71,7 @@ export default {
 		]),
 	},
 	components: {
+		Loading,
 		Error,
 		Navigation,
 	},

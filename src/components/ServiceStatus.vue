@@ -57,6 +57,8 @@ export default {
 	methods: {
 		async getServiceStatus() {
 			try {
+				this.$store.commit("loading", true);
+
 				this.timestamp = null;
 				this.status = [];
 				this.noResults = null;
@@ -77,6 +79,7 @@ export default {
 
 				if (!serviceStatus.length) {
 					this.noResults = "All lines are running with GOOD SERVICE.";
+					this.$store.commit("loading", false);
 					return true;
 				}
 
@@ -113,6 +116,8 @@ export default {
 				if (this.$route.params.line) {
 					this.setLineDetail(this.$route.params.line);
 				}
+
+				this.$store.commit("loading", false);
 			} catch(error) {
 				// Modify error message for invalid HTTP response status codes.
 				if (error.response && error.response.status && error.response.status != 200) {
@@ -122,11 +127,15 @@ export default {
 				this.status = [];
 				this.$store.commit("error", error);
 
+				this.$store.commit("loading", false);
+
 				return false;
 			}
 		},
 		async setLineDetail(line) {
 			try {
+				this.$store.commit("loading", true);
+
 				this.routerLink(`/service-status/${line}`);
 
 				this.detail = null;
@@ -174,6 +183,8 @@ export default {
 				detail = detail.replace(/\[(.{1})\]/g, "<div style='background-image: url(/images/$1.png)' class='bullet'></div>");
 
 				this.detail = detail;
+
+				this.$store.commit("loading", false);
 			} catch(error) {
 				// Modify error message for invalid HTTP response status codes.
 				if (error.response && error.response.status && error.response.status != 200) {
@@ -182,6 +193,8 @@ export default {
 
 				this.status = [];
 				this.$store.commit("error", error);
+
+				this.$store.commit("loading", false);
 
 				return false;
 			}
