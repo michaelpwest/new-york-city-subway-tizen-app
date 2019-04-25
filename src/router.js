@@ -6,7 +6,7 @@ import ArrivalTimes from "./views/ArrivalTimes.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
 	mode: "history",
 	routes: [
 		{
@@ -40,3 +40,12 @@ export default new Router({
 		},
 	],
 });
+
+// If a Tizen device, set home route.
+if (tau.support.browser.tizen) { // eslint-disable-line
+	router.replace({
+		path: "/",
+	});
+}
+
+export default router;
