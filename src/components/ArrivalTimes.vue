@@ -4,23 +4,21 @@
 			<h2 class="ui-title">{{ station.name }}</h2>
 		</header>
 		<section class="ui-content">
+			<span v-show="arrivalTimes.timestamp" class="time">Updated: {{ arrivalTimes.timestamp | time }}</span>
+			<div class="refresh" @click="refresh()">
+				<i class="fas fa-redo-alt"></i>
+			</div>
 			<ul class="ui-listview">
-				<li class="ui-listview-divider">
-					<span v-show="arrivalTimes.timestamp" class="time">Updated: {{ arrivalTimes.timestamp | time }}</span>
-					<div class="refresh" @click="refresh()">
-						<i class="fas fa-redo-alt"></i>
-					</div>
-				</li>
-			</ul>
-			<ul class="ui-listview" v-for="(direction, i) in arrivalTimes.directions" :key="i">
-				<li class="ui-listview-divider">{{ direction.name }}</li>
-				<li v-for="(arrivalTime, j) in direction.arrivalTimes" :key="j">
-					<div>{{ arrivalTime.firstLast }}</div>
-					<div class="bullet-container">
-						<div :style="{ 'background-image': `url(/images/${arrivalTime.route}.png)` }" class="bullet"></div>
-					</div>
-					<div class="arrival-time">{{ arrivalTime.arrivalTime | timeFromNow }}</div>
-				</li>
+				<template v-for="(arrivalTime, i) in arrivalTimes.arrivalTimes">
+					<li :key="`${i}-${arrivalTime.direction}`" v-if="arrivalTime.direction" class="ui-listview-divider">{{ arrivalTime.direction }}</li>
+					<li :key="i">
+						<div>{{ arrivalTime.firstLast }}</div>
+						<div class="bullet-container">
+							<div :style="{ 'background-image': `url(/images/${arrivalTime.route}.png)` }" class="bullet"></div>
+						</div>
+						<div class="arrival-time">{{ arrivalTime.arrivalTime | timeFromNow }}</div>
+					</li>
+				</template>
 			</ul>
 		</section>
 	</section>
@@ -126,6 +124,7 @@ export default {
 	margin-left: 10px;
 }
 .refresh, .time {
+	font-size: 0.8em;
 	color: #12B4FF;
 }
 </style>

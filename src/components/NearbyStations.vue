@@ -4,20 +4,16 @@
 			<h2 class="ui-title">Nearby Stations</h2>
 		</header>
 		<section class="ui-content">
-			<ul class="ui-listview" >
-				<li class="ui-listview-divider">
-					<span v-show="timestamp" class="time">Updated: {{ timestamp | time }}</span>
-					<div class="refresh" @click="refresh()">
-						<i class="fas fa-redo-alt"></i>
-					</div>
-				</li>
-			</ul>
+			<span v-show="timestamp" class="time">Updated: {{ timestamp | time }}</span>
+			<div class="refresh" @click="refresh()">
+				<i class="fas fa-redo-alt"></i>
+			</div>
 			<div class='error'>{{ error }}</div>
-			<ul v-for="(station, i) in stations" :key="i" class="ui-listview">
-				<li class="ui-listview-divider">
+			<ul class="ui-listview">
+				<li v-for="(station, i) in stations" :key="i" @click="selectStation(station.station)">
 					<div v-for="(route, j) in station.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" class="bullet"></div>
+					<div>{{ station.name }}</div>
 				</li>
-				<li @click="selectStation(station.station)">{{ station.name }}</li>
 			</ul>
 		</section>
 	</section>
@@ -134,6 +130,7 @@ export default {
 	margin-left: 10px;
 }
 .refresh, .time {
+	font-size: 0.8em;
 	color: #12B4FF;
 }
 </style>

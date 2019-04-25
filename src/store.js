@@ -66,7 +66,27 @@ export default new Vuex.Store({
 					throw new Error("Cannot retrieve arrival times");
 				}
 
-				context.commit("arrivalTimes", response.data);
+				const arrivalTimes = {
+					timestamp: response.data.timestamp,
+					arrivalTimes: [],
+				};
+
+				// Merge directions into single array and add direction name once for first arrival time.
+				const directionsUsed = [];
+				["N", "S"].forEach((direction) => {
+					const currentDirection = response.data.directions[direction];
+					currentDirection.arrivalTimes.forEach((arrivalTime) => {
+						if (!directionsUsed.includes(currentDirection.name)) {
+							directionsUsed.push(currentDirection.name);
+							arrivalTime.direction = currentDirection.name;
+						} else {
+							arrivalTime.direction = null;
+						}
+						arrivalTimes.arrivalTimes.push(arrivalTime);
+					});
+				});
+
+				context.commit("arrivalTimes", arrivalTimes);
 
 				context.commit("loading", false);
 			} catch(error) {
