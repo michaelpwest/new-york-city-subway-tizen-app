@@ -4,7 +4,7 @@
 			<h2 class="ui-title">Select Route</h2>
 		</header>
 		<section class="ui-content">
-			<ul class="ui-listview">
+			<ul class="ui-listview ui-snap-listview">
 				<li v-for="(line, i) in lines" :key="i">
 					<div v-for="(route, j) in line.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" @click="selectRoute(route)" class="bullet"></div>
 				</li>

@@ -4,11 +4,11 @@
 			<h2 class="ui-title">Service Status</h2>
 		</header>
 		<section class="ui-content">
-			<span v-show="timestamp" class="time">Updated: {{ timestamp | time }}</span>
+			<span v-if="timestamp" class="time">Updated: {{ timestamp | time }}</span>
 			<div class="refresh" @click="refresh()">
 				<i class="fas fa-redo-alt"></i>
 			</div>
-			<ul class="ui-listview">
+			<ul class="ui-listview ui-snap-listview">
 				<li v-for="(lineStatus, i) in status" :key="i" @click="setLineDetail(lineStatus.name)">
 					<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" class="bullet"></div>
 					<div :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</div>

@@ -4,11 +4,11 @@
 			<h2 class="ui-title">Select Station</h2>
 		</header>
 		<section class="ui-content">
-			<ul class="ui-listview">
+			<ul class="ui-listview ui-snap-listview">
 				<template v-for="(station, i) in stations">
 					<li :key="`${i}-${station.borough}`" v-if="station.borough" class="ui-listview-divider">{{ station.borough }}</li>
 					<li :key="i" @click="selectStation(station.station)">
-						<span>{{ station.name }}</span>
+						<div class="ui-marquee">{{ station.name }}</div>
 					</li>
 				</template>
 			</ul>

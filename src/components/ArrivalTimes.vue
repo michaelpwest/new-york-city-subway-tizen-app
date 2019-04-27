@@ -1,18 +1,18 @@
 <template>
 	<section>
 		<header class="ui-header">
-			<h2 class="ui-title">{{ station.name }}</h2>
+			<h2 class="ui-title ui-marquee always">{{ station.name }}</h2>
 		</header>
 		<section class="ui-content">
-			<span v-show="arrivalTimes.timestamp" class="time">Updated: {{ arrivalTimes.timestamp | time }}</span>
+			<span v-if="arrivalTimes.timestamp" class="time">Updated: {{ arrivalTimes.timestamp | time }}</span>
 			<div class="refresh" @click="refresh()">
 				<i class="fas fa-redo-alt"></i>
 			</div>
-			<ul class="ui-listview">
+			<ul class="ui-listview ui-snap-listview">
 				<template v-for="(arrivalTime, i) in arrivalTimes.arrivalTimes">
 					<li :key="`${i}-${arrivalTime.direction}`" v-if="arrivalTime.direction" class="ui-listview-divider">{{ arrivalTime.direction }}</li>
 					<li :key="i">
-						<div>{{ arrivalTime.firstLast }}</div>
+						<div class="ui-marquee">{{ arrivalTime.firstLast }}</div>
 						<div class="bullet-container">
 							<div :style="{ 'background-image': `url(/images/${arrivalTime.route}.png)` }" class="bullet"></div>
 						</div>

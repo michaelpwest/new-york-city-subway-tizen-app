@@ -4,15 +4,15 @@
 			<h2 class="ui-title">Nearby Stations</h2>
 		</header>
 		<section class="ui-content">
-			<span v-show="timestamp" class="time">Updated: {{ timestamp | time }}</span>
+			<span v-if="timestamp" class="time">Updated: {{ timestamp | time }}</span>
 			<div class="refresh" @click="refresh()">
 				<i class="fas fa-redo-alt"></i>
 			</div>
 			<div class='error'>{{ error }}</div>
-			<ul class="ui-listview">
+			<ul class="ui-listview ui-snap-listview">
 				<li v-for="(station, i) in stations" :key="i" @click="selectStation(station.station)">
 					<div v-for="(route, j) in station.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" class="bullet"></div>
-					<div>{{ station.name }}</div>
+					<div class="ui-marquee">{{ station.name }}</div>
 				</li>
 			</ul>
 		</section>

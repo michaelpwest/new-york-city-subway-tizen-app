@@ -1,8 +1,8 @@
 <template>
 	<section>
-		<Routes v-show="!route && !station"></Routes>
-		<Stations v-show="route"></Stations>
-		<ArrivalTimes v-show="station"></ArrivalTimes>
+		<Routes v-if="!route && !station"></Routes>
+		<Stations v-if="route"></Stations>
+		<ArrivalTimes v-if="station"></ArrivalTimes>
 	</section>
 </template>
 
