@@ -181,6 +181,22 @@ export default {
 	overflow: scroll;
 	text-align: center;
 }
+.bullet {
+	background-size: 48px;
+	display: inline-block;
+	height: 48px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 48px;
+}
+.refresh {
+	display: inline-block;
+	margin-left: 10px;
+}
+.refresh, .time {
+	font-size: 0.8em;
+	color: #FFFFFF;
+}
 .ui-bottom-button.ui-popup-footer {
 	bottom: 20px;
 	position: fixed;
@@ -194,9 +210,6 @@ export default {
 }
 .ui-listview li {
 	overflow: visible;
-}
-.ui-listview li.ui-listview-divider {
-	height: 50px;
 }
 .ui-popup {
 	display: block;

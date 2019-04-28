@@ -108,23 +108,13 @@ export default {
 	width: calc(100% - 48px);
 }
 .bullet {
-	background-size: 48px;
-	display: inline-block;
-	height: 48px;
-	width: 48px;
+	margin-left: 0;
+	margin-right: 0;
 }
 .bullet-container {
 	display: inline-block;
 	line-height: 48px;
 	text-align: left;
 	width: 48px;
-}
-.refresh {
-	display: inline-block;
-	margin-left: 10px;
-}
-.refresh, .time {
-	font-size: 0.8em;
-	color: #12B4FF;
 }
 </style>

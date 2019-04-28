@@ -223,17 +223,12 @@ export default {
 </script>
 
 <style scoped>
-.bullet, .detail >>> .bullet {
-	background-size: 48px;
-	display: inline-block;
-	height: 48px;
-	margin-left: 5px;
-	margin-right: 5px;
-	width: 48px;
-}
 .detail >>> .bullet {
 	background-size: 32px;
+	display: inline-block;
 	height: 32px;
+	margin-left: 5px;
+	margin-right: 5px;
 	width: 32px;
 }
 .detail >>> .TitlePlannedWork, .detail >>> .TitleDelay {
@@ -242,14 +237,6 @@ export default {
 }
 .no-results >>> .good-service {
 	color: #006600;
-}
-.refresh {
-	display: inline-block;
-	margin-left: 10px;
-}
-.refresh, .time {
-	font-size: 0.8em;
-	color: #12B4FF;
 }
 .status {
 	text-transform: capitalize;

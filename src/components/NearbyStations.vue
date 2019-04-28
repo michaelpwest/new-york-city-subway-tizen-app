@@ -114,23 +114,7 @@ export default {
 </script>
 
 <style scoped>
-.bullet {
-	background-size: 48px;
-	display: inline-block;
-	height: 48px;
-	margin-left: 5px;
-	margin-right: 5px;
-	width: 48px;
-}
 .error {
 	margin-top: 10px;
-}
-.refresh {
-	display: inline-block;
-	margin-left: 10px;
-}
-.refresh, .time {
-	font-size: 0.8em;
-	color: #12B4FF;
 }
 </style>

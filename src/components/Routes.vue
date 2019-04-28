@@ -47,14 +47,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped>
-.bullet {
-	background-size: 48px;
-	display: inline-block;
-	height: 48px;
-	margin-left: 5px;
-	margin-right: 5px;
-	width: 48px;
-}
-</style>
