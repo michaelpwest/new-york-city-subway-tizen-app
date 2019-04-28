@@ -11,10 +11,10 @@
 			<ul class="ui-listview ui-snap-listview">
 				<li v-for="(lineStatus, i) in status" :key="i" @click="setLineDetail(lineStatus.name)">
 					<div v-for="(route, j) in lineStatus.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" class="bullet"></div>
-					<div :style="`color: ${lineStatus.color}`">{{ lineStatus.status }}</div>
+					<div :style="`color: ${lineStatus.color}`" class="status">{{ lineStatus.status }}</div>
 				</li>
 			</ul>
-			<div v-if="noResults">{{ noResults }}</div>
+			<div v-if="noResults" v-html="noResults" class="no-results"></div>
 			<div v-if="detail" class="detail ui-popup">
 				<div v-html="detail" class="ui-popup-content"></div>
 				<div class="ui-bottom-button ui-popup-footer">
@@ -69,12 +69,16 @@ export default {
 
 				let serviceStatus = response.data.serviceStatus;
 
+				serviceStatus.forEach((line) => {
+					line.status = line.status.toLowerCase();
+				});
+
 				serviceStatus = serviceStatus.filter(line => {
-					return line.status != "GOOD SERVICE";
+					return line.status != "good service";
 				});
 
 				if (!serviceStatus.length) {
-					this.noResults = "All lines are running with GOOD SERVICE.";
+					this.noResults = "<span class='good-service'>All lines are running with Good Service.</span>";
 					this.$store.commit("loading", false);
 					return true;
 				}
@@ -89,7 +93,7 @@ export default {
 					// Set color based on service status.
 					let color;
 					switch(status) {
-					case "DELAYS":
+					case "delays":
 						color = "#990033";
 						break;
 					default:
@@ -236,6 +240,9 @@ export default {
 	color: #0000FF;
 	font-weight: bold;
 }
+.no-results >>> .good-service {
+	color: #006600;
+}
 .refresh {
 	display: inline-block;
 	margin-left: 10px;
@@ -243,5 +250,8 @@ export default {
 .refresh, .time {
 	font-size: 0.8em;
 	color: #12B4FF;
+}
+.status {
+	text-transform: capitalize;
 }
 </style>
