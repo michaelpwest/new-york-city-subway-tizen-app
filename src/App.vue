@@ -90,6 +90,9 @@ export default {
 
 				const listItems = this.snapList.querySelectorAll("li:not(.ui-listview-divider)");
 
+				// Determine whether to scroll search results.
+				const searchContainer = document.querySelector(".search-container");
+
 				// Determine snap list selected index based on rotary event direction.
 				this.snapListSelectedIndex += e.detail.direction == "CW" ? 1 : -1;
 				this.snapListSelectedIndex = _.clamp(this.snapListSelectedIndex, 0, listItems.length - 1);
@@ -100,11 +103,18 @@ export default {
 						// Mark element as selected.
 						element.classList.add("ui-snap-listview-selected");
 
+						// Container to scroll.
+						const scrollContainer = searchContainer ? searchContainer : app;
+
 						// Scroll element into view.
-						app.scrollTop = element.getBoundingClientRect().top + app.scrollTop;
+						scrollContainer.scrollTop = element.getBoundingClientRect().top + scrollContainer.scrollTop;
 
 						// Scroll up so element is vertically centered.
-						app.scrollTop -= (appHeight + navHeight - element.clientHeight) / 2;
+						let scrollAmount = appHeight - element.clientHeight;
+						if (!searchContainer) {
+							scrollAmount += navHeight;
+						}
+						scrollContainer.scrollTop -= scrollAmount / 2;
 
 						// Remove marquee from last element.
 						if (this.snapListMarquee) {

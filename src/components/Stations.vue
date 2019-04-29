@@ -4,6 +4,7 @@
 			<h2 class="ui-title">Select Station</h2>
 		</header>
 		<section class="ui-content">
+			<Search></Search>
 			<ul class="ui-listview ui-snap-listview">
 				<template v-for="(station, i) in stations">
 					<li :key="`${i}-${station.borough}`" v-if="station.borough" class="ui-listview-divider">{{ station.borough }}</li>
@@ -18,6 +19,8 @@
 
 <script>
 import { mapActions } from "vuex";
+
+import Search from "@/components/Search.vue";
 
 const _ = require("lodash");
 
@@ -95,6 +98,9 @@ export default {
 			"routerLink",
 			"selectedStation",
 		]),
+	},
+	components: {
+		Search,
 	},
 };
 </script>

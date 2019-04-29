@@ -4,6 +4,7 @@
 			<h2 class="ui-title">Select Route</h2>
 		</header>
 		<section class="ui-content">
+			<Search></Search>
 			<ul class="ui-listview ui-snap-listview">
 				<li v-for="(line, i) in lines" :key="i">
 					<div v-for="(route, j) in line.routes" :key="j" :style="{ 'background-image': `url(/images/${route}.png)` }" @click="selectRoute(route)" class="bullet"></div>
@@ -15,6 +16,8 @@
 
 <script>
 import { mapActions } from "vuex";
+
+import Search from "@/components/Search.vue";
 
 const lines = require("@/assets/resources/lines.json");
 const routes = require("@/assets/resources/routes.json");
@@ -44,6 +47,9 @@ export default {
 		...mapActions([
 			"routerLink",
 		]),
+	},
+	components: {
+		Search,
 	},
 };
 </script>

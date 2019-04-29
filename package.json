@@ -11,6 +11,7 @@
 	"dependencies": {
 		"axios": "^0.18.0",
 		"core-js": "^2.6.5",
+		"fuzzy-search": "^3.0.1",
 		"geolib": "^2.0.24",
 		"moment": "^2.24.0",
 		"sanitize-html": "^1.20.0",
