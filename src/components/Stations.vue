@@ -43,6 +43,29 @@ export default {
 					return station.routes.includes(route);
 				});
 
+				// Add prefix to borough to allow boroughs to be sorted correctly.
+				routeStations.forEach((station) => {
+					switch (station.borough) {
+					case "Bx":
+						station.borough = "1-Bx";
+						break;
+					case "M":
+						station.borough = "2-M";
+						break;
+					case "Bk":
+						station.borough = "3-Bk";
+						break;
+					case "Q":
+						station.borough = "4-Q";
+						break;
+					case "SI":
+						station.borough = "5-SI";
+						break;
+					default:
+						break;
+					}
+				});
+
 				// Sort stations by borough.
 				routeStations = _.sortBy(routeStations, "borough");
 
@@ -52,19 +75,19 @@ export default {
 					if (!boroughsUsed.includes(station.borough)) {
 						boroughsUsed.push(station.borough);
 						switch (station.borough) {
-						case "Bx":
+						case "1-Bx":
 							station.borough = "Bronx";
 							break;
-						case "M":
+						case "2-M":
 							station.borough = "Manhattan";
 							break;
-						case "Bk":
+						case "3-Bk":
 							station.borough = "Brooklyn";
 							break;
-						case "Q":
+						case "4-Q":
 							station.borough = "Queens";
 							break;
-						case "SI":
+						case "5-SI":
 							station.borough = "Staten Island";
 							break;
 						default:
