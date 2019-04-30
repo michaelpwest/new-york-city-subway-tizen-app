@@ -53,3 +53,10 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.bullet {
+	position: relative;
+	top: 10px;
+}
+</style>

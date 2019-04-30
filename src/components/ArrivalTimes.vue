@@ -117,4 +117,7 @@ export default {
 	text-align: left;
 	width: 48px;
 }
+.ui-snap-listview-item {
+	height: 190px;
+}
 </style>
