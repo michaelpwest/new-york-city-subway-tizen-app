@@ -39,6 +39,7 @@ export default {
 	},
 	methods: {
 		searchingToggle(inProgress) {
+			// Toggle whether a search is in progress.
 			this.searching = inProgress;
 			this.search();
 		},
@@ -46,6 +47,7 @@ export default {
 			this.searchResults = null;
 			this.noResults = "Enter a search term.";
 
+			// No search term provided.
 			if (!this.searchTerm.length) {
 				return false;
 			}
@@ -59,10 +61,12 @@ export default {
 			const searchResults = searcher.search(this.searchTerm);
 
 			if (searchResults.length) {
+				// Search results found.
 				this.searchResults = searchResults;
 				this.noResults = null;
 				this.$parent.$parent.$parent.setupSnapList();
 			} else {
+				// No search results found.
 				this.searchResults = null;
 				this.noResults = "No stations found.";
 			}
@@ -73,6 +77,7 @@ export default {
 			this.selectedStation(station);
 		},
 		handleBackButton() {
+			// Clear search.
 			this.searchTerm = "";
 			this.searchingToggle(false);
 			document.querySelector(".search").blur();

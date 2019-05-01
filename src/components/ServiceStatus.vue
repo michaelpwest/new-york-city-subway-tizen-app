@@ -60,7 +60,7 @@ export default {
 				this.noResults = null;
 				this.detail = null;
 
-				// Get service status.
+				// Get service status list.
 				const response = await axios.get(`${config.apiUrl}/service-status`);
 
 				if (response.status != 200 || !response.data || !response.data.serviceStatus) {
@@ -69,14 +69,17 @@ export default {
 
 				let serviceStatus = response.data.serviceStatus;
 
+				// Set all service statuses as lowercase.
 				serviceStatus.forEach((line) => {
 					line.status = line.status.toLowerCase();
 				});
 
+				// Remove "good service" from service status list.
 				serviceStatus = serviceStatus.filter(line => {
 					return line.status != "good service";
 				});
 
+				// Display message if all lines have "good service" status.
 				if (!serviceStatus.length) {
 					this.noResults = "<span class='good-service'>All lines are running with Good Service.</span>";
 					this.$store.commit("loading", false);
